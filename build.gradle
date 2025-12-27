@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+project.ext {
+    restAssuredVersion = '5.5.0'
+    jUnitVersion = '5.11.0'
+    lombokVersion = '1.18.34'
+}
+
+dependencies {
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: jUnitVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+
+    implementation group: 'io.rest-assured', name: 'json-path', version: restAssuredVersion
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: restAssuredVersion
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+}
+
+test {
+    useJUnitPlatform()
+}
