@@ -22,12 +22,11 @@ public class ItemProvider {
     public static ValidatableResponse sendGetRequest(String id) {
         return given()
                 .baseUri(ApiServicePath.BASE_URL)
-                .basePath(ApiServicePath.CREATE_ITEM)
+                .basePath(ApiServicePath.GET_ITEM)
                 .pathParam("id", id)
                 .contentType(ContentType.JSON)
                 .when()
                 .get()
                 .then();
-
     }
 }

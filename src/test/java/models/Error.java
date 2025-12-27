@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateItemResponseError {
+public class Error {
 
     @JsonProperty("result")
     private Result result;

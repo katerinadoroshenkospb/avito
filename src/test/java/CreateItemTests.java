@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import models.CreateItem;
 import models.CreateItemResponse;
-import models.CreateItemResponseError;
+import models.Error;
 import models.Result;
 import models.Statistics;
 import org.apache.http.HttpStatus;
@@ -67,7 +67,7 @@ public class CreateItemTests {
         ValidatableResponse responseFirst = ItemProvider.sendPostRequest(item);
         responseFirst.statusCode(HttpStatus.SC_OK);
         ValidatableResponse response = ItemProvider.sendPostRequest(item);
-        CreateItemResponseError itemError = response.extract().response().as(new TypeRef<>() {
+        Error itemError = response.extract().response().as(new TypeRef<>() {
         });
         log.info("Полученная ошибка при повторном создании с тем же sellerId: %s".formatted(itemError));
         assertEquals("передан некорректный идентификатор объявления", itemError.getResult().getMessage());
@@ -79,7 +79,7 @@ public class CreateItemTests {
     Stream<DynamicTest> unsuccessfulCreateItem() {
         return createItemSourceForUnsuccessfull().map(arguments -> {
                     CreateItem item = (CreateItem) arguments.get()[0];
-                    CreateItemResponseError error = (CreateItemResponseError) arguments.get()[1];
+                    Error error = (Error) arguments.get()[1];
                     String testCaseName = (String) arguments.get()[2];
                     return DynamicTest.dynamicTest(
                             testCaseName,
@@ -89,7 +89,7 @@ public class CreateItemTests {
                                 ValidatableResponse response = ItemProvider.sendPostRequest(item);
                                 log.info("Полученный ответ: %s".formatted(response.extract().asPrettyString()));
                                 response.statusCode(HttpStatus.SC_BAD_REQUEST);
-                                CreateItemResponseError itemError = response.extract().response().as(new TypeRef<>() {
+                                Error itemError = response.extract().response().as(new TypeRef<>() {
                                 });
                                 log.info("Полученная ошибка: {}", itemError);
                                 assertEquals(
@@ -122,7 +122,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в sellerID 5 целых чисел"
@@ -138,7 +138,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("поле sellerID обязательно").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче sellerID = 0"
@@ -154,7 +154,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("поле sellerID обязательно").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче sellerID = null"
@@ -170,7 +170,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в sellerID отрицательного числа"
@@ -186,7 +186,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в name очень длинного значения"
@@ -202,7 +202,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("поле name обязательно").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в name пустого значения null"
@@ -218,7 +218,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в name = true"
@@ -234,7 +234,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче name в формате цифр"
@@ -250,7 +250,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("поле price обязательно").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в price 0"
@@ -266,7 +266,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("поле price обязательно").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в price пустого значения null"
@@ -282,7 +282,7 @@ public class CreateItemTests {
                                         .contacts(getRandomInteger(1, 999))
                                         .build())
                                 .build(),
-                        CreateItemResponseError.builder()
+                        Error.builder()
                                 .result(Result.builder().message("передан некорректный идентификатор объявления").build())
                                 .build(),
                         "Неуспешное создание 400 Bad Request при передаче в price отрицательного числа"
