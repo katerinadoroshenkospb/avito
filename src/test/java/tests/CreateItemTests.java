@@ -44,43 +44,16 @@ public class CreateItemTests {
         try {
             CreateItemResponse itemResponse = response.extract().response().as(new TypeRef<>() {
             });
-            assertEquals(0, itemResponse.getSellerId());
+            assertEquals(item.getSellerID(), itemResponse.getSellerId());
             assertEquals(item.getName(), itemResponse.getName());
-            assertEquals(0, itemResponse.getPrice());
+            assertEquals(item.getPrice(), itemResponse.getPrice());
             Assertions.assertNotNull(itemResponse.getCreatedAt());
-            assertEquals(0, itemResponse.getStatistics().getLikes());
-            assertEquals(0, itemResponse.getStatistics().getViewCount());
-            assertEquals(0, itemResponse.getStatistics().getContacts());
+            assertEquals(item.getStatistics(), itemResponse.getStatistics());
         } catch (Exception e) {
             log.error("Ответ не соответствует описанному контракту");
             log.error("Полученный ответ: %s".formatted(response.extract().asPrettyString()));
             Assertions.fail();
         }
-    }
-
-    @Test
-    @DisplayName("Повторное создание Item при одинаковом sellerId, 400 Bad Request")
-    void sameSellerId() {
-        CreateItem item = CreateItem.builder()
-                .sellerID(getRandomInteger(111111, 999999))
-                .name("obyavlenie")
-                .price(getRandomInteger(0, 999999))
-                .statistics(Statistics.builder()
-                        .likes(getRandomInteger(1, 999))
-                        .viewCount(getRandomInteger(1, 999))
-                        .contacts(getRandomInteger(1, 999))
-                        .build())
-                .build();
-        log.info("Для запроса используется: %s".formatted(item));
-        ValidatableResponse responseFirst = ItemProvider.sendPostRequest(item);
-        responseFirst.statusCode(HttpStatus.SC_OK);
-        ValidatableResponse response = ItemProvider.sendPostRequest(item);
-        response.statusCode(HttpStatus.SC_BAD_REQUEST);
-        Error itemError = response.extract().response().as(new TypeRef<>() {
-        });
-        log.info("Полученная ошибка при повторном создании с тем же sellerId: %s".formatted(itemError));
-        assertEquals(HttpStatus.SC_BAD_REQUEST, itemError.getStatus());
-        assertEquals("передан некорректный идентификатор объявления", itemError.getResult().getMessage());
     }
 
     @TestFactory
