@@ -70,8 +70,8 @@ public class CreateItemTests {
         Error itemError = response.extract().response().as(new TypeRef<>() {
         });
         log.info("Полученная ошибка при повторном создании с тем же sellerId: %s".formatted(itemError));
-        assertEquals("передан некорректный идентификатор объявления", itemError.getResult().getMessage());
         assertEquals(HttpStatus.SC_BAD_REQUEST, itemError.getStatus());
+        assertEquals("передан некорректный идентификатор объявления", itemError.getResult().getMessage());
     }
 
     @TestFactory

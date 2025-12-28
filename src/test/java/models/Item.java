@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class GetItemById {
+public class Item {
 
     @JsonProperty("id")
     private String id;
