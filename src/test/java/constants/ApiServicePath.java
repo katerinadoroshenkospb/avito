@@ -9,5 +9,7 @@ public class ApiServicePath {
 
     public static final String CREATE_ITEM = "/api/1/item";
 
-    public static final String GET_ITEM = "/api/1/item/{id}";
+    public static final String GET_ITEM_BY_ID = "/api/1/item/{id}";
+
+    public static final String GET_ITEM_BY_SELLER_ID = " /api/1/{sellerID}/item";
 }

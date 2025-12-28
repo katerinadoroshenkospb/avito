@@ -1,13 +1,11 @@
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.ValidatableResponse;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import models.CreateItem;
 import models.Error;
-import models.GetItemById;
+import models.Item;
 import models.Result;
 import models.Statistics;
 import org.apache.http.HttpStatus;
@@ -18,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.provider.Arguments;
 import providers.ItemProvider;
+import utils.ParseUtils;
 import utils.RandomUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,10 +24,6 @@ import static utils.RandomUtils.getRandomInteger;
 
 @Slf4j
 public class GetItemByIdTests {
-
-    private static final Pattern UUID_PATTERN = Pattern.compile(
-            "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
-    );
 
     @Test
     @DisplayName(" Успешное получение 200 OK")
@@ -47,12 +42,12 @@ public class GetItemByIdTests {
         createResponse.statusCode(HttpStatus.SC_OK);
         log.info("Созданый Item: %s".formatted(newItem));
         String response = createResponse.extract().path("status");
-        String id = extractUuidString(response);
+        String id = ParseUtils.extractUuidString(response);
         log.info("У созданного Item id = %s".formatted(id));
         ValidatableResponse responseItem = ItemProvider.sendGetRequest(id);
         log.info("Полученный ответ при запросе GET: %s".formatted(responseItem.extract().asPrettyString()));
-        List<GetItemById> items = responseItem.extract().as(new TypeRef<List<GetItemById>>() {});
-        GetItemById item = items.get(0);
+        List<Item> items = responseItem.extract().as(new TypeRef<List<Item>>() {});
+        Item item = items.get(0);
 
         //TODO После исправления формата времени в createdAt сделать преобразование + проверку поля, что время в прошлом
         Assertions.assertEquals(1, items.size());
@@ -116,11 +111,5 @@ public class GetItemByIdTests {
                         "Неуспешное получение 400 Bad Request при передаче id в формате числа"
                 )
         );
-    }
-
-    private static String extractUuidString(String input) {
-        if (input == null) return null;
-        Matcher matcher = UUID_PATTERN.matcher(input);
-        return matcher.find() ? matcher.group() : null;
     }
 }

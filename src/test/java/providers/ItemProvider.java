@@ -22,8 +22,19 @@ public class ItemProvider {
     public static ValidatableResponse sendGetRequest(String id) {
         return given()
                 .baseUri(ApiServicePath.BASE_URL)
-                .basePath(ApiServicePath.GET_ITEM)
+                .basePath(ApiServicePath.GET_ITEM_BY_ID)
                 .pathParam("id", id)
+                .contentType(ContentType.JSON)
+                .when()
+                .get()
+                .then();
+    }
+
+    public static ValidatableResponse sendGetRequestSellerId(Integer sellerId) {
+        return given()
+                .baseUri(ApiServicePath.BASE_URL)
+                .basePath(ApiServicePath.GET_ITEM_BY_SELLER_ID)
+                .pathParam("sellerID", sellerId)
                 .contentType(ContentType.JSON)
                 .when()
                 .get()
