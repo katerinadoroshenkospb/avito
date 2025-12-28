@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO ответа от сервиса при получении Item
+ */
 @Data
 @NoArgsConstructor
 public class Item {

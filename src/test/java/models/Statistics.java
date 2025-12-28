@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO получаемой из ответа Statistics
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

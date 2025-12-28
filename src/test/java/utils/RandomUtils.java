@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
     /**
-     * Возвращает случайное положительное целое число в диапазоне [min, max]
+     * Возвращает случайное Integer число в диапазоне [min, max]
      * включая обе границы.
      *
      * @param min нижняя граница (включительно)

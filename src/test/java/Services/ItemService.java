@@ -6,7 +6,6 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import models.CreateItem;
 import models.Item;
-import models.Statistics;
 import org.apache.http.HttpStatus;
 import providers.ItemProvider;
 import utils.ParseUtils;
@@ -16,6 +15,12 @@ import static utils.RandomUtils.getRandomInteger;
 @Slf4j
 public class ItemService {
 
+    /**
+     * Добавить объявление в сервис
+     *
+     * @param item добавляемое объявление
+     * @return возвращает класс {@code Item} содержащий информацию о созданном объявлении
+     */
     public static Item addItem(CreateItem item) {
         ValidatableResponse createResponse = ItemProvider.sendPostRequest(item);
         createResponse.statusCode(HttpStatus.SC_OK);

@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO получаеммого ответа при запросе информации о Item
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
