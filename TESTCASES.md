@@ -31,31 +31,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
   "createdAt": "<string>"
 }
 
-## Тест-кейс 2: Неуспешное создание 400 Bad Request при повторной передаче значений
-### Шаги: Отправить запрос
-curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
---header 'Content-Type: application/json' \
---header 'Accept: application/json' \
---data-raw '{
-  "sellerID": 886648,
-  "name": "obyavlenie",
-  "price": 25,
-  "statistics": {
-    "likes": 25,
-    "viewCount": 25,
-    "contacts": 25
-  }
-}'
-### Ожидаемый результат: Код и статус ответа 400 Bad Request, объявление не создано
-{
-    "result": {
-        "message": "передан некорректный идентификатор объявления",
-        "messages": null
-    },
-    "status": "400"
-}
-
-## Тест-кейс 3: Неуспешное создание 400 Bad Request при передаче в sellerID 5 целых чисел
+## Тест-кейс 2: Неуспешное создание 400 Bad Request при передаче в sellerID 5 целых чисел
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -79,7 +55,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 4: Неуспешное создание 400 Bad Request при передаче в sellerID нуля
+## Тест-кейс 3: Неуспешное создание 400 Bad Request при передаче в sellerID нуля
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -103,7 +79,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 5: Неуспешное создание 400 Bad Request при передаче в sellerID пустого значения null
+## Тест-кейс 4: Неуспешное создание 400 Bad Request при передаче в sellerID пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -127,7 +103,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 6: Неуспешное создание 400 Bad Request при передаче в sellerID логического значения true
+## Тест-кейс 5: Неуспешное создание 400 Bad Request при передаче в sellerID логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -151,7 +127,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 7: Неуспешное создание 400 Bad Request при передаче в sellerID отрицательного числа
+## Тест-кейс 6: Неуспешное создание 400 Bad Request при передаче в sellerID отрицательного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -175,7 +151,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 8: Неуспешное создание 400 Bad Request при передаче в sellerID дробного числа
+## Тест-кейс 7: Неуспешное создание 400 Bad Request при передаче в sellerID дробного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -199,7 +175,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 9: Неуспешное создание 400 Bad Request при передаче sellerID в формате строки
+## Тест-кейс 8: Неуспешное создание 400 Bad Request при передаче sellerID в формате строки
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -223,7 +199,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 10: Неуспешное создание 400 Bad Request при передаче в name символов !"№;%
+## Тест-кейс 9: Неуспешное создание 400 Bad Request при передаче в name символов !"№;%
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -247,7 +223,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 11: Неуспешное создание 400 Bad Request при передаче в name очень длинного значения
+## Тест-кейс 10: Неуспешное создание 400 Bad Request при передаче в name очень длинного значения
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -271,7 +247,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 12: Неуспешное создание 400 Bad Request при передаче в name пустого значения null
+## Тест-кейс 11: Неуспешное создание 400 Bad Request при передаче в name пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -295,7 +271,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 13: Неуспешное создание 400 Bad Request при передаче в name логического значения true
+## Тест-кейс 12: Неуспешное создание 400 Bad Request при передаче в name логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -319,7 +295,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 14: Неуспешное создание 400 Bad Request при передаче name в формате цифр
+## Тест-кейс 13: Неуспешное создание 400 Bad Request при передаче name в формате цифр
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -343,7 +319,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 15: Неуспешное создание 400 Bad Request при передаче в price нуля
+## Тест-кейс 14: Неуспешное создание 400 Bad Request при передаче в price нуля
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -367,7 +343,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 16: Неуспешное создание 400 Bad Request при передаче в price значения больше int
+## Тест-кейс 15: Неуспешное создание 400 Bad Request при передаче в price значения больше int
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -391,7 +367,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 17: Неуспешное создание 400 Bad Request при передаче в price пустого значения null
+## Тест-кейс 16: Неуспешное создание 400 Bad Request при передаче в price пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -415,7 +391,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 18: Неуспешное создание 400 Bad Request при передаче в price логического значения true
+## Тест-кейс 17: Неуспешное создание 400 Bad Request при передаче в price логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -439,7 +415,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 19: Неуспешное создание 400 Bad Request при передаче в price отрицательного числа
+## Тест-кейс 18: Неуспешное создание 400 Bad Request при передаче в price отрицательного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -463,7 +439,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 20: Неуспешное создание 400 Bad Request при передаче в price дробного числа
+## Тест-кейс 19: Неуспешное создание 400 Bad Request при передаче в price дробного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -487,7 +463,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 21: Неуспешное создание 400 Bad Request при передаче price в формате строки
+## Тест-кейс 20: Неуспешное создание 400 Bad Request при передаче price в формате строки
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -511,7 +487,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 22: Неуспешное создание 400 Bad Request при передаче в likes нуля
+## Тест-кейс 21: Неуспешное создание 400 Bad Request при передаче в likes нуля
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -535,7 +511,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 23: Неуспешное создание 400 Bad Request при передаче в likes значения больше int
+## Тест-кейс 22: Неуспешное создание 400 Bad Request при передаче в likes значения больше int
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -559,7 +535,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 24: Неуспешное создание 400 Bad Request при передаче в likes пустого значения null
+## Тест-кейс 23: Неуспешное создание 400 Bad Request при передаче в likes пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -583,7 +559,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 25: Неуспешное создание 400 Bad Request при передаче в likes логического значения true
+## Тест-кейс 24: Неуспешное создание 400 Bad Request при передаче в likes логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -607,7 +583,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 26: Неуспешное создание 400 Bad Request при передаче в likes отрицательного числа
+## Тест-кейс 25: Неуспешное создание 400 Bad Request при передаче в likes отрицательного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -631,7 +607,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 27: Неуспешное создание 400 Bad Request при передаче в likes дробного числа
+## Тест-кейс 26: Неуспешное создание 400 Bad Request при передаче в likes дробного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -655,7 +631,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 28: Неуспешное создание 400 Bad Request при передаче likes в формате строки
+## Тест-кейс 27: Неуспешное создание 400 Bad Request при передаче likes в формате строки
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -679,7 +655,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 29: Неуспешное создание 400 Bad Request при передаче в viewCount нуля
+## Тест-кейс 28: Неуспешное создание 400 Bad Request при передаче в viewCount нуля
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -703,7 +679,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 30: Неуспешное создание 400 Bad Request при передаче в viewCount значения больше int
+## Тест-кейс 29: Неуспешное создание 400 Bad Request при передаче в viewCount значения больше int
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -727,7 +703,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 31: Неуспешное создание 400 Bad Request при передаче в viewCount пустого значения null
+## Тест-кейс 30: Неуспешное создание 400 Bad Request при передаче в viewCount пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -751,7 +727,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 32: Неуспешное создание 400 Bad Request при передаче в viewCount логического значения true
+## Тест-кейс 31: Неуспешное создание 400 Bad Request при передаче в viewCount логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -775,7 +751,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 33: Неуспешное создание 400 Bad Request при передаче в viewCount отрицательного числа
+## Тест-кейс 32: Неуспешное создание 400 Bad Request при передаче в viewCount отрицательного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -799,7 +775,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 34: Неуспешное создание 400 Bad Request при передаче в viewCount дробного числа
+## Тест-кейс 33: Неуспешное создание 400 Bad Request при передаче в viewCount дробного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -823,7 +799,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 35: Неуспешное создание 400 Bad Request при передаче viewCount в формате строки
+## Тест-кейс 34: Неуспешное создание 400 Bad Request при передаче viewCount в формате строки
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -847,7 +823,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 36: Неуспешное создание 400 Bad Request при передаче в contacts нуля
+## Тест-кейс 35: Неуспешное создание 400 Bad Request при передаче в contacts нуля
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -871,7 +847,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 37: Неуспешное создание 400 Bad Request при передаче в contacts пустого значения null
+## Тест-кейс 36: Неуспешное создание 400 Bad Request при передаче в contacts пустого значения null
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -895,7 +871,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 38: Неуспешное создание 400 Bad Request при передаче в contacts логического значения true
+## Тест-кейс 37: Неуспешное создание 400 Bad Request при передаче в contacts логического значения true
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -919,7 +895,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 39: Неуспешное создание 400 Bad Request при передаче в contacts отрицательного числа
+## Тест-кейс 38: Неуспешное создание 400 Bad Request при передаче в contacts отрицательного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -943,7 +919,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 40: Неуспешное создание 400 Bad Request при передаче в contacts дробного числа
+## Тест-кейс 39: Неуспешное создание 400 Bad Request при передаче в contacts дробного числа
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
@@ -967,7 +943,7 @@ curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
     "status": "400"
 }
 
-## Тест-кейс 41: Неуспешное создание 400 Bad Request при передаче contacts в формате строки
+## Тест-кейс 40: Неуспешное создание 400 Bad Request при передаче contacts в формате строки
 ### Шаги: Отправить запрос
 curl --location --request POST 'https://qa-internship.avito.com/api/1/item' \
 --header 'Content-Type: application/json' \
